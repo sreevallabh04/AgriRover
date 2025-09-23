@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import '../models/sensor_data.dart';
+import '../models/enhanced_sensor_data.dart';
 
-class SensorCard extends StatefulWidget {
-  final SensorData sensor;
+class EnhancedSensorCard extends StatefulWidget {
+  final EnhancedSensorData sensor;
   final VoidCallback? onTap;
 
-  const SensorCard({
+  const EnhancedSensorCard({
     super.key,
     required this.sensor,
     this.onTap,
   });
 
   @override
-  State<SensorCard> createState() => _SensorCardState();
+  State<EnhancedSensorCard> createState() => _EnhancedSensorCardState();
 }
 
-class _SensorCardState extends State<SensorCard>
+class _EnhancedSensorCardState extends State<EnhancedSensorCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
@@ -74,6 +74,14 @@ class _SensorCardState extends State<SensorCard>
     }
   }
 
+  Color _getAccuracyColor(double accuracy) {
+    if (accuracy >= 98) return Colors.green;
+    if (accuracy >= 95) return Colors.lightGreen;
+    if (accuracy >= 90) return Colors.orange;
+    if (accuracy >= 80) return Colors.deepOrange;
+    return Colors.red;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -87,6 +95,7 @@ class _SensorCardState extends State<SensorCard>
                 : 1.0;
     final icon = _getSensorIcon(widget.sensor.type);
     final color = _getSensorColor(widget.sensor.type, widget.sensor.isNormal);
+    final accuracyColor = _getAccuracyColor(widget.sensor.accuracy);
 
     return GestureDetector(
       onTapDown: (_) => _controller.forward(),
@@ -99,10 +108,10 @@ class _SensorCardState extends State<SensorCard>
           return Transform.scale(
             scale: _scaleAnimation.value,
             child: Card(
-              elevation: 6,
+              elevation: 8,
               shadowColor: color.withOpacity(0.3),
               child: Container(
-                padding: EdgeInsets.all(4 * scale),
+                padding: EdgeInsets.all(6 * scale),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   gradient: LinearGradient(
@@ -118,6 +127,7 @@ class _SensorCardState extends State<SensorCard>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    // Header with icon and accuracy
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -133,40 +143,52 @@ class _SensorCardState extends State<SensorCard>
                             size: 12 * scale,
                           ),
                         ),
+                        // Accuracy indicator
                         Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 2 * scale,
                             vertical: 1 * scale,
                           ),
                           decoration: BoxDecoration(
-                            color: widget.sensor.isNormal
-                                ? Colors.green.withOpacity(0.2)
-                                : Colors.red.withOpacity(0.2),
+                            color: accuracyColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(3),
                           ),
-                          child: Text(
-                            widget.sensor.isNormal ? 'Normal' : 'Alert',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: widget.sensor.isNormal
-                                  ? Colors.green.shade700
-                                  : Colors.red.shade700,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 6 * scale,
-                            ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.check_circle,
+                                size: 6 * scale,
+                                color: accuracyColor,
+                              ),
+                              SizedBox(width: 1 * scale),
+                              Text(
+                                '${widget.sensor.accuracy.toStringAsFixed(1)}%',
+                                style: TextStyle(
+                                  color: accuracyColor,
+                                  fontSize: 5 * scale,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                     SizedBox(height: 3 * scale),
+
+                    // Sensor type
                     Text(
                       widget.sensor.type,
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      style: TextStyle(
                         color: theme.colorScheme.onSurface.withOpacity(0.7),
                         fontWeight: FontWeight.w500,
                         fontSize: 9 * scale,
                       ),
                     ),
                     SizedBox(height: 1 * scale),
+
+                    // Value and unit
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
@@ -192,13 +214,111 @@ class _SensorCardState extends State<SensorCard>
                       ],
                     ),
                     SizedBox(height: 1 * scale),
+
+                    // Status and improvement
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Status badge
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 2 * scale,
+                            vertical: 1 * scale,
+                          ),
+                          decoration: BoxDecoration(
+                            color: widget.sensor.isNormal
+                                ? Colors.green.withOpacity(0.2)
+                                : Colors.red.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Text(
+                            widget.sensor.isNormal ? 'Normal' : 'Alert',
+                            style: TextStyle(
+                              color: widget.sensor.isNormal
+                                  ? Colors.green.shade700
+                                  : Colors.red.shade700,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 6 * scale,
+                            ),
+                          ),
+                        ),
+
+                        // Accuracy improvement
+                        if (widget.sensor.accuracyImprovement > 0)
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 2 * scale,
+                              vertical: 1 * scale,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.trending_up,
+                                  size: 5 * scale,
+                                  color: Colors.green,
+                                ),
+                                SizedBox(width: 1 * scale),
+                                Text(
+                                  '+${widget.sensor.accuracyImprovement.toStringAsFixed(1)}%',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 5 * scale,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 1 * scale),
+
+                    // Last update time
                     Text(
                       _formatTimestamp(widget.sensor.timestamp),
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      style: TextStyle(
                         color: theme.colorScheme.onSurface.withOpacity(0.5),
                         fontSize: 6 * scale,
                       ),
                     ),
+
+                    // AI Analysis indicator
+                    if (widget.sensor.aiAnalysis != null)
+                      Container(
+                        margin: EdgeInsets.only(top: 2 * scale),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 2 * scale,
+                          vertical: 1 * scale,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.purple.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.psychology,
+                              size: 5 * scale,
+                              color: Colors.purple,
+                            ),
+                            SizedBox(width: 1 * scale),
+                            Text(
+                              'AI: ${widget.sensor.aiAnalysis!.confidenceText}',
+                              style: TextStyle(
+                                color: Colors.purple,
+                                fontSize: 5 * scale,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                   ],
                 ),
               ),
@@ -214,7 +334,7 @@ class _SensorCardState extends State<SensorCard>
     final difference = now.difference(timestamp);
 
     if (difference.inMinutes < 1) {
-      return 'Just now';
+      return 'Live';
     } else if (difference.inMinutes < 60) {
       return '${difference.inMinutes}m ago';
     } else if (difference.inHours < 24) {

@@ -15,6 +15,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
   late Animation<double> _fadeAnimation;
   bool _isRecording = false;
   bool _isConnected = true;
+  String? _lastAnalysis;
 
   @override
   void initState() {
@@ -342,37 +343,70 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
           topRight: Radius.circular(20),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          _buildControlButton(
-            icon: Icons.camera_alt,
-            label: 'Capture',
-            onPressed: () {
-              _captureImage();
-            },
-          ),
-          _buildControlButton(
-            icon: _isRecording ? Icons.stop : Icons.videocam,
-            label: _isRecording ? 'Stop' : 'Record',
-            onPressed: () {
-              _toggleRecording();
-            },
-            color: _isRecording ? Colors.red : Theme.of(context).primaryColor,
-          ),
-          _buildControlButton(
-            icon: Icons.switch_camera,
-            label: 'Switch',
-            onPressed: () {
-              _switchCamera();
-            },
-          ),
-          _buildControlButton(
-            icon: Icons.settings,
-            label: 'Settings',
-            onPressed: () {
-              _openSettings();
-            },
+          if (_lastAnalysis != null)
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor.withOpacity(0.08),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 36,
+                    height: 36,
+                    child: Lottie.asset('assets/animations/plant_growth.json',
+                        repeat: true),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      _lastAnalysis!,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildControlButton(
+                icon: Icons.camera_alt,
+                label: 'Capture',
+                onPressed: () {
+                  _captureImage();
+                },
+              ),
+              _buildControlButton(
+                icon: _isRecording ? Icons.stop : Icons.videocam,
+                label: _isRecording ? 'Stop' : 'Record',
+                onPressed: () {
+                  _toggleRecording();
+                },
+                color:
+                    _isRecording ? Colors.red : Theme.of(context).primaryColor,
+              ),
+              _buildControlButton(
+                icon: Icons.switch_camera,
+                label: 'Switch',
+                onPressed: () {
+                  _switchCamera();
+                },
+              ),
+              _buildControlButton(
+                icon: Icons.settings,
+                label: 'Settings',
+                onPressed: () {
+                  _openSettings();
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -414,9 +448,12 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
   }
 
   void _captureImage() {
+    setState(() {
+      _lastAnalysis = 'Crop health: Good • Pests: Low • Water stress: Mild';
+    });
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Image captured successfully!'),
+        content: Text('Image captured. Running crop analysis...'),
         backgroundColor: Colors.green,
       ),
     );

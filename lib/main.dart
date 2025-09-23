@@ -6,6 +6,7 @@ import 'providers/sensor_provider.dart';
 import 'providers/rover_provider.dart';
 import 'providers/irrigation_provider.dart';
 import 'providers/alerts_provider.dart';
+import 'providers/enhanced_sensor_provider.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/camera_feed_screen.dart';
 import 'screens/rover_control_screen.dart';
@@ -13,6 +14,8 @@ import 'screens/manual_control_screen.dart';
 import 'screens/irrigation_control_screen.dart';
 import 'screens/alerts_screen.dart';
 import 'screens/settings_screen.dart';
+import 'screens/welcome_screen.dart';
+import 'services/database_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +48,7 @@ class AgriRoverApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AppProvider()),
         ChangeNotifierProvider(create: (_) => SensorProvider()),
+        ChangeNotifierProvider(create: (_) => EnhancedSensorProvider()),
         ChangeNotifierProvider(create: (_) => RoverProvider()),
         ChangeNotifierProvider(create: (_) => IrrigationProvider()),
         ChangeNotifierProvider(create: (_) => AlertsProvider()),
@@ -55,8 +59,10 @@ class AgriRoverApp extends StatelessWidget {
             title: 'AgriRover',
             debugShowCheckedModeBanner: false,
             theme: appProvider.currentTheme,
-            home: const MainNavigationScreen(),
+            initialRoute: '/welcome',
             routes: {
+              '/welcome': (context) => const WelcomeScreen(),
+              '/main': (context) => const MainNavigationScreen(),
               '/dashboard': (context) => const DashboardScreen(),
               '/camera': (context) => const CameraFeedScreen(),
               '/rover': (context) => const RoverControlScreen(),
@@ -96,12 +102,24 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
   void initState() {
     super.initState();
     _pageController = PageController();
+    // Initialize database connection asynchronously; do not block UI
+    _initDatabase();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  Future<void> _initDatabase() async {
+    const uri =
+        'postgresql://neondb_owner:npg_0PIzftX2Huhn@ep-curly-poetry-adiaxacw-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+    try {
+      await DatabaseService.instance.connect(uri);
+    } catch (_) {
+      // Silently ignore in UI layer; surface issues where queries occur
+    }
   }
 
   @override

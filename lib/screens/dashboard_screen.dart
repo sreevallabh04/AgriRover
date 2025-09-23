@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../providers/sensor_provider.dart';
+import '../providers/enhanced_sensor_provider.dart';
+import 'package:provider/provider.dart';
 import '../providers/rover_provider.dart';
 import '../providers/irrigation_provider.dart';
 import '../providers/alerts_provider.dart';
@@ -57,6 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final sensorProvider = Provider.of<SensorProvider>(context);
+    final enhancedProvider = Provider.of<EnhancedSensorProvider>(context);
     final roverProvider = Provider.of<RoverProvider>(context);
     final irrigationProvider = Provider.of<IrrigationProvider>(context);
     final alertsProvider = Provider.of<AlertsProvider>(context);
@@ -136,6 +138,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                       ),
                       const SizedBox(height: 24),
                       _buildSensorsSection(sensorProvider),
+                      const SizedBox(height: 24),
+                      _buildEnhancedHistory(enhancedProvider),
                       const SizedBox(height: 24),
                       _buildQuickActions(context),
                     ],
@@ -382,6 +386,87 @@ class _DashboardScreenState extends State<DashboardScreen>
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildEnhancedHistory(EnhancedSensorProvider provider) {
+    if (provider.sensors.isEmpty) return const SizedBox();
+    final sensor = provider.sensors.first;
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'History: ${sensor.type}',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              TextButton(
+                onPressed: () => provider.loadHistory(sensor.type),
+                child: const Text('Load latest'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          if (sensor.historicalData.isEmpty)
+            const Text('No history loaded yet')
+          else
+            SizedBox(
+              height: 120,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: sensor.historicalData.length,
+                separatorBuilder: (_, __) => const SizedBox(width: 8),
+                itemBuilder: (context, index) {
+                  final dp = sensor.historicalData[index];
+                  return Container(
+                    width: 80,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          dp.value.toStringAsFixed(1),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '${dp.timestamp.hour.toString().padLeft(2, '0')}:${dp.timestamp.minute.toString().padLeft(2, '0')}',
+                          style: TextStyle(
+                            color: Colors.grey.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
