@@ -166,13 +166,13 @@ class _DashboardScreenState extends State<DashboardScreen>
           end: Alignment.bottomRight,
           colors: [
             Theme.of(context).primaryColor,
-            Theme.of(context).primaryColor.withOpacity(0.8),
+            Theme.of(context).primaryColor.withValues(alpha: 0.8),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).primaryColor.withOpacity(0.3),
+            color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -183,7 +183,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         children: [
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.dashboard,
                 color: Colors.white,
                 size: 28,
@@ -254,7 +254,7 @@ class _DashboardScreenState extends State<DashboardScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -268,7 +268,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           Text(
             title,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                 ),
           ),
           const SizedBox(height: 4),
@@ -363,6 +363,20 @@ class _DashboardScreenState extends State<DashboardScreen>
               },
             ),
             AnimatedButton(
+              text: 'Multi Cameras',
+              icon: Icons.video_collection,
+              onPressed: () {
+                Navigator.pushNamed(context, '/multi_cameras');
+              },
+            ),
+            AnimatedButton(
+              text: 'Analytics',
+              icon: Icons.insights,
+              onPressed: () {
+                Navigator.pushNamed(context, '/analytics');
+              },
+            ),
+            AnimatedButton(
               text: 'Rover Control',
               icon: Icons.smart_toy,
               onPressed: () {
@@ -399,7 +413,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -439,7 +453,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                     width: 80,
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(

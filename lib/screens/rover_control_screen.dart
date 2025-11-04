@@ -115,7 +115,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
         boxShadow: [
           BoxShadow(
             color: (status.isPowered ? Colors.green : Colors.grey)
-                .withOpacity(0.3),
+                .withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -140,7 +140,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
                   Text(
                     status.isPowered ? 'POWERED ON' : 'POWERED OFF',
                     style: theme.textTheme.titleLarge?.copyWith(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha: 0.9),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -149,7 +149,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Lottie.asset(
@@ -197,7 +197,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -243,7 +243,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -278,7 +278,8 @@ class _RoverControlScreenState extends State<RoverControlScreen>
                           ? 'Rover is currently powered on'
                           : 'Rover is currently powered off',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -306,10 +307,10 @@ class _RoverControlScreenState extends State<RoverControlScreen>
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.1),
+                color: Colors.green.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: Colors.green.withOpacity(0.3),
+                  color: Colors.green.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
@@ -350,7 +351,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -423,7 +424,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? color.withOpacity(0.1) : Colors.transparent,
+          color: isSelected ? color.withValues(alpha: 0.1) : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected ? color : Colors.grey.shade300,
@@ -463,7 +464,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -531,7 +532,7 @@ class _RoverControlScreenState extends State<RoverControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),

@@ -132,13 +132,13 @@ class _ManualControlScreenState extends State<ManualControlScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.primaryColor.withOpacity(0.1),
-            theme.primaryColor.withOpacity(0.05),
+            theme.primaryColor.withValues(alpha: 0.1),
+            theme.primaryColor.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: theme.primaryColor.withOpacity(0.2),
+          color: theme.primaryColor.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -155,7 +155,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
           Container(
             width: 1,
             height: 40,
-            color: theme.primaryColor.withOpacity(0.2),
+            color: theme.primaryColor.withValues(alpha: 0.2),
           ),
           Expanded(
             child: _buildStatusItem(
@@ -168,7 +168,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
           Container(
             width: 1,
             height: 40,
-            color: theme.primaryColor.withOpacity(0.2),
+            color: theme.primaryColor.withValues(alpha: 0.2),
           ),
           Expanded(
             child: _buildStatusItem(
@@ -205,7 +205,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
         Text(
           label,
           style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.6),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
       ],
@@ -221,7 +221,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -317,7 +317,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
                   decoration: BoxDecoration(
                     color: isDisabled
                         ? Colors.grey.shade300
-                        : color.withOpacity(0.1),
+                        : color.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: isDisabled ? Colors.grey.shade400 : color,
@@ -327,7 +327,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
                       BoxShadow(
                         color: isDisabled
                             ? Colors.transparent
-                            : color.withOpacity(0.3),
+                            : color.withValues(alpha: 0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 4),
                       ),
@@ -398,7 +398,7 @@ class _ManualControlScreenState extends State<ManualControlScreen>
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),
@@ -441,10 +441,10 @@ class _ManualControlScreenState extends State<ManualControlScreen>
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.1),
+                color: Colors.red.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: Colors.red.withOpacity(0.3),
+                  color: Colors.red.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
@@ -485,10 +485,10 @@ class _ManualControlScreenState extends State<ManualControlScreen>
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha: 0.3),
             width: 1,
           ),
         ),

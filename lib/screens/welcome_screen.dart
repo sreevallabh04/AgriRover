@@ -122,7 +122,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             end: Alignment.bottomRight,
             colors: [
               Theme.of(context).primaryColor,
-              Theme.of(context).primaryColor.withOpacity(0.8),
+              Theme.of(context).primaryColor.withValues(alpha: 0.8),
               Colors.green.shade300,
             ],
           ),
@@ -182,11 +182,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         width: 120 * localScale,
                         height: 120 * localScale,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(60 * localScale),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
+                              color: Colors.black.withValues(alpha: 0.1),
                               blurRadius: 20 * localScale,
                               offset: Offset(0, 10 * localScale),
                             ),
@@ -218,7 +218,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -229,7 +229,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         page.description,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           height: 1.5,
                         ),
                         textAlign: TextAlign.center,
@@ -270,7 +270,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 decoration: BoxDecoration(
                   color: _currentPage == index
                       ? Colors.white
-                      : Colors.white.withOpacity(0.3),
+                      : Colors.white.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(indicatorHeight / 2),
                 ),
               ),
@@ -310,7 +310,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             child: Text(
               "Skip",
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha: 0.8),
                 fontSize: 16,
               ),
             ),

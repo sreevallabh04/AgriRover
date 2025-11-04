@@ -1,11 +1,11 @@
 {
-    "name": "agri_rover",
-    "short_name": "agri_rover",
+    "name": "AgriRover",
+    "short_name": "AgriRover",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#2E7D32",
+    "theme_color": "#2E7D32",
+    "description": "Smart Agriculture Mobile Application",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

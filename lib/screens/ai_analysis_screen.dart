@@ -100,7 +100,7 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
             end: Alignment.bottomRight,
             colors: [
               theme.primaryColor,
-              theme.primaryColor.withOpacity(0.8),
+              theme.primaryColor.withValues(alpha: 0.8),
             ],
           ),
         ),
@@ -109,7 +109,7 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
           children: [
             Row(
               children: [
-                Icon(Icons.psychology, color: Colors.white, size: 28),
+                const Icon(Icons.psychology, color: Colors.white, size: 28),
                 const SizedBox(width: 12),
                 Text(
                   'AI System Overview',
@@ -175,7 +175,7 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -248,7 +248,7 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: theme.primaryColor.withOpacity(0.1),
+                    color: theme.primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -281,7 +281,7 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: _getTrendColor(ai.trend).withOpacity(0.2),
+                    color: _getTrendColor(ai.trend).withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -410,7 +410,8 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
               children: [
                 Row(
                   children: [
-                    Icon(Icons.auto_awesome, color: Colors.purple, size: 24),
+                    const Icon(Icons.auto_awesome,
+                        color: Colors.purple, size: 24),
                     const SizedBox(width: 8),
                     Text(
                       'AI Recommendations',
@@ -461,9 +462,9 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -487,7 +488,7 @@ class _AIAnalysisScreenState extends State<AIAnalysisScreen>
                   style: TextStyle(
                     color: (color is MaterialColor)
                         ? color.shade600
-                        : color.withOpacity(0.8),
+                        : color.withValues(alpha: 0.8),
                     fontSize: 12,
                   ),
                 ),

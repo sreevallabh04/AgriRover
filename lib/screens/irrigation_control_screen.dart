@@ -135,8 +135,8 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color:
-                (status.isActive ? Colors.blue : Colors.grey).withOpacity(0.3),
+            color: (status.isActive ? Colors.blue : Colors.grey)
+                .withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -161,7 +161,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
                   Text(
                     status.isActive ? 'WATERING ACTIVE' : 'SYSTEM IDLE',
                     style: theme.textTheme.titleLarge?.copyWith(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha: 0.9),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -170,7 +170,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Lottie.asset(
@@ -188,12 +188,12 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.water_drop,
                     color: Colors.white,
                     size: 24,
@@ -236,7 +236,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -271,7 +271,8 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
                           ? 'Pump is currently running'
                           : 'Pump is currently stopped',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -338,7 +339,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -380,10 +381,10 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.1),
+                color: Colors.green.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.green.withOpacity(0.3),
+                  color: Colors.green.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
@@ -433,10 +434,10 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -459,7 +460,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
           Text(
             title,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: color.withOpacity(0.8),
+              color: color.withValues(alpha: 0.8),
               fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,
@@ -480,7 +481,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -500,10 +501,10 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.blue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.blue.withOpacity(0.3),
+                  color: Colors.blue.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
@@ -544,10 +545,10 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.1),
+                color: Colors.grey.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: Colors.grey.withOpacity(0.3),
+                  color: Colors.grey.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
@@ -586,7 +587,7 @@ class _IrrigationControlScreenState extends State<IrrigationControlScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),

@@ -126,13 +126,13 @@ class _AlertsScreenState extends State<AlertsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.primaryColor.withOpacity(0.1),
-            theme.primaryColor.withOpacity(0.05),
+            theme.primaryColor.withValues(alpha: 0.1),
+            theme.primaryColor.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: theme.primaryColor.withOpacity(0.2),
+          color: theme.primaryColor.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -195,10 +195,10 @@ class _AlertsScreenState extends State<AlertsScreen>
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -220,7 +220,7 @@ class _AlertsScreenState extends State<AlertsScreen>
           Text(
             label,
             style: theme.textTheme.bodySmall?.copyWith(
-              color: color.withOpacity(0.8),
+              color: color.withValues(alpha: 0.8),
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -290,12 +290,12 @@ class _AlertsScreenState extends State<AlertsScreen>
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: _getAlertColor(alert.type).withOpacity(0.3),
+          color: _getAlertColor(alert.type).withValues(alpha: 0.3),
           width: alert.isRead ? 1 : 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -318,7 +318,7 @@ class _AlertsScreenState extends State<AlertsScreen>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: _getAlertColor(alert.type).withOpacity(0.1),
+                    color: _getAlertColor(alert.type).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -343,7 +343,7 @@ class _AlertsScreenState extends State<AlertsScreen>
                                     : FontWeight.bold,
                                 color: alert.isRead
                                     ? theme.colorScheme.onSurface
-                                        .withOpacity(0.7)
+                                        .withValues(alpha: 0.7)
                                     : theme.colorScheme.onSurface,
                               ),
                             ),
@@ -363,7 +363,8 @@ class _AlertsScreenState extends State<AlertsScreen>
                       Text(
                         alert.message,
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          color: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.7),
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -378,7 +379,7 @@ class _AlertsScreenState extends State<AlertsScreen>
                             ),
                             decoration: BoxDecoration(
                               color: _getPriorityColor(alert.priority)
-                                  .withOpacity(0.1),
+                                  .withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -394,8 +395,8 @@ class _AlertsScreenState extends State<AlertsScreen>
                           Text(
                             _formatTimestamp(alert.timestamp),
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color:
-                                  theme.colorScheme.onSurface.withOpacity(0.5),
+                              color: theme.colorScheme.onSurface
+                                  .withValues(alpha: 0.5),
                             ),
                           ),
                           const Spacer(),
@@ -456,33 +457,33 @@ class _AlertsScreenState extends State<AlertsScreen>
                     PopupMenuItem(
                       value: 'mark_read',
                       enabled: !alert.isRead,
-                      child: Row(
+                      child: const Row(
                         children: [
                           Icon(Icons.mark_email_read, size: 20),
-                          const SizedBox(width: 8),
-                          const Text('Mark as Read'),
+                          SizedBox(width: 8),
+                          Text('Mark as Read'),
                         ],
                       ),
                     ),
                     PopupMenuItem(
                       value: 'resolve',
                       enabled: !alert.isResolved,
-                      child: Row(
+                      child: const Row(
                         children: [
                           Icon(Icons.check_circle,
                               size: 20, color: Colors.green),
-                          const SizedBox(width: 8),
-                          const Text('Resolve'),
+                          SizedBox(width: 8),
+                          Text('Resolve'),
                         ],
                       ),
                     ),
-                    PopupMenuItem(
+                    const PopupMenuItem(
                       value: 'delete',
                       child: Row(
                         children: [
                           Icon(Icons.delete, size: 20, color: Colors.red),
-                          const SizedBox(width: 8),
-                          const Text('Delete'),
+                          SizedBox(width: 8),
+                          Text('Delete'),
                         ],
                       ),
                     ),

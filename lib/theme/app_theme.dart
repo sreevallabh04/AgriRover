@@ -25,12 +25,10 @@ class AppTheme {
         primary: primaryColor,
         secondary: secondaryColor,
         surface: surfaceColor,
-        background: backgroundColor,
         error: errorColor,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: textPrimary,
-        onBackground: textPrimary,
         onError: Colors.white,
       ),
       appBarTheme: const AppBarTheme(
@@ -38,11 +36,20 @@ class AppTheme {
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primaryColor,
+        foregroundColor: Colors.white,
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
       ),
       cardTheme: CardTheme(
         color: cardColor,
         elevation: 4,
-        shadowColor: Colors.black.withOpacity(0.1),
+        shadowColor: Colors.black.withValues(alpha: 0.1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -52,7 +59,7 @@ class AppTheme {
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
           elevation: 4,
-          shadowColor: Colors.black.withOpacity(0.2),
+          shadowColor: Colors.black.withValues(alpha: 0.2),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -132,12 +139,10 @@ class AppTheme {
         primary: primaryColor,
         secondary: secondaryColor,
         surface: Color(0xFF1E1E1E),
-        background: Color(0xFF121212),
         error: errorColor,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: Colors.white,
-        onBackground: Colors.white,
         onError: Colors.white,
       ),
       appBarTheme: const AppBarTheme(
@@ -145,11 +150,20 @@ class AppTheme {
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primaryColor,
+        foregroundColor: Colors.white,
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
       ),
       cardTheme: CardTheme(
         color: const Color(0xFF2D2D2D),
         elevation: 4,
-        shadowColor: Colors.black.withOpacity(0.3),
+        shadowColor: Colors.black.withValues(alpha: 0.3),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -159,7 +173,7 @@ class AppTheme {
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
           elevation: 4,
-          shadowColor: Colors.black.withOpacity(0.3),
+          shadowColor: Colors.black.withValues(alpha: 0.3),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

@@ -16,6 +16,12 @@ import 'screens/alerts_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'services/database_service.dart';
+import 'theme/app_theme.dart';
+import 'providers/location_provider.dart';
+import 'providers/cameras_provider.dart';
+import 'screens/multi_camera_control_screen.dart';
+import 'providers/predictive_provider.dart';
+import 'screens/analytics_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,13 +58,19 @@ class AgriRoverApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => RoverProvider()),
         ChangeNotifierProvider(create: (_) => IrrigationProvider()),
         ChangeNotifierProvider(create: (_) => AlertsProvider()),
+        ChangeNotifierProvider(create: (_) => LocationProvider()..initialize()),
+        ChangeNotifierProvider(create: (_) => CamerasProvider()),
+        ChangeNotifierProvider(create: (_) => PredictiveProvider()),
       ],
       child: Consumer<AppProvider>(
         builder: (context, appProvider, child) {
           return MaterialApp(
             title: 'AgriRover',
             debugShowCheckedModeBanner: false,
-            theme: appProvider.currentTheme,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode:
+                appProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/welcome',
             routes: {
               '/welcome': (context) => const WelcomeScreen(),
@@ -70,6 +82,8 @@ class AgriRoverApp extends StatelessWidget {
               '/irrigation': (context) => const IrrigationControlScreen(),
               '/alerts': (context) => const AlertsScreen(),
               '/settings': (context) => const SettingsScreen(),
+              '/multi_cameras': (context) => const MultiCameraControlScreen(),
+              '/analytics': (context) => const AnalyticsScreen(),
             },
           );
         },
@@ -141,7 +155,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
           color: theme.colorScheme.surface,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: const Offset(0, -2),
             ),

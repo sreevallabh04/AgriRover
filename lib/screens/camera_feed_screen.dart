@@ -14,7 +14,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   bool _isRecording = false;
-  bool _isConnected = true;
+  final bool _isConnected = true;
   String? _lastAnalysis;
 
   @override
@@ -262,7 +262,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.6),
+        color: Colors.black.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -281,7 +281,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
           Text(
             'Field A - Section 3',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: 0.8),
               fontSize: 12,
             ),
           ),
@@ -289,7 +289,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
           Text(
             '720p @ 30fps',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: 0.8),
               fontSize: 12,
             ),
           ),
@@ -302,7 +302,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.6),
+        color: Colors.black.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -322,7 +322,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
           IconButton(
             icon: Icon(
               Icons.flash_on,
-              color: Colors.white.withOpacity(0.7),
+              color: Colors.white.withValues(alpha: 0.7),
             ),
             onPressed: () {
               // Handle flash toggle
@@ -352,7 +352,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
               margin: const EdgeInsets.only(bottom: 12),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.08),
+                color: Theme.of(context).primaryColor.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
@@ -426,7 +426,7 @@ class _CameraFeedScreenState extends State<CameraFeedScreen>
       children: [
         Container(
           decoration: BoxDecoration(
-            color: buttonColor.withOpacity(0.1),
+            color: buttonColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: IconButton(
